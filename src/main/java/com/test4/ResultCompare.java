@@ -29,12 +29,12 @@ public class ResultCompare {
 			StringBuilder sb = new StringBuilder();
 			sb.append("Method failed: ").append(response.getStatusLine());
 		}
-		System.out.println(entity.getContentLength());
+		//System.out.println(entity.getContentLength());
 		String responseContent = EntityUtils.toString(entity, "UTF-8");
 		return responseContent;
 	}
 	public static List<ResultDto> getResultDtoBy2037(String id) throws Exception{
-		String url =  "http://10.125.200.13/eventdriver/recommendEntry.do?sceneId=2037&companyId="+id+
+		String url =  "http://10.125.193.110/eventdriver/recommendEntry.do?sceneId=2037&companyId="+id+
 				"&callback=f&pageId=79001dc1ac1054354f506723135d2156e9b546d172";
 		String result = getUrlResponse(url);
 		result = result.substring(2, result.length()-2);
@@ -45,7 +45,7 @@ public class ResultCompare {
 	}
 	
 	public static List<ResultDto> getResultDtoBy2035(String id) throws Exception{
-		String url =  "http://10.125.200.13/eventdriver/recommendEntry.do?sceneId=2035&productId="+id+
+		String url =  "http://10.125.193.110/eventdriver/recommendEntry.do?sceneId=2035&productId="+id+
 				"&callback=f&pageId=79001dc1ac1054354f506723135d2156e9b546d172";
 		String result = getUrlResponse(url);
 		result = result.substring(2, result.length()-2);
@@ -54,7 +54,7 @@ public class ResultCompare {
 	}
 	
 	public static List<ResultDto> getResultDtoBy2056(String id) throws Exception{
-		String url =  "http://10.125.200.13/eventdriver/recommendEntry.do?sceneId=2056&companyId="+id+
+		String url =  "http://10.125.193.110/eventdriver/recommendEntry.do?sceneId=2056&companyId="+id+
 				"&callback=f&pageId=79001dc1ac1054354f506723135d2156e9b546d172";
 		String result = getUrlResponse(url);
 		result = result.substring(2, result.length()-2);
@@ -82,6 +82,12 @@ public class ResultCompare {
 				throwsException(dto);
 			}
 			if(!content.contains(dto.getSubject())){
+				throwsException(dto);
+			}
+			if(!content.contains(dto.getCurrencySymbol())){
+				throwsException(dto);
+			}
+			if(!content.contains(dto.getLowerPrice())){
 				throwsException(dto);
 			}
 		}
@@ -131,13 +137,7 @@ public class ResultCompare {
 	
 	public static void main(String args[]) throws Exception{
 		System.out.println("start...");
-		//test2037();
-		List<String> id = readInput("d:\\tmp\\2037.xls");
-		for(int i=0;i<id.size();i++){
-			System.out.println("companyId:"+id.get(i));
-			List<ResultDto> dtos = getResultDtoBy2037(id.get(i));
-				//compare(dtos);
-		}
+		test2056();
 		System.out.println("end...");
 	}
 

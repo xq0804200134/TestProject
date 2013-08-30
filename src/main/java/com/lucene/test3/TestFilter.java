@@ -14,7 +14,9 @@ import org.apache.lucene.search.PrefixQuery;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.Sort;
+import org.apache.lucene.search.QueryWrapperFilter;
 import org.apache.lucene.search.TermRangeFilter;
+import org.apache.lucene.search.TermRangeQuery;
 import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
@@ -66,6 +68,7 @@ public class TestFilter {
 	public static void main(String[] args) throws Exception{
 		// TODO Auto-generated method stub
 		testFilterSearch();
+		//QueryWrapperFilter();
 	}
     public static void testFilterSearch() throws Exception{
         
@@ -75,6 +78,24 @@ public class TestFilter {
 	    Filter filter=null;
 	    //1.域   2.起始位置  3.结束位置   4.是否包含起始位置    5.是否包含结束位置   
         filter =TermRangeFilter.newStringRange("range","4","9",true,true);
+        
+      //使用NumericRangeFilter进行过滤
+        //filter=NumericRangeFilter.newIntRange("size", 10, 5000, true, true);
+	    query(query,filter);
+    }
+    
+    public static void QueryWrapperFilter() throws Exception{
+        
+    	Term term = new Term("contents","scree"); 
+	    PrefixQuery query = new PrefixQuery(term); 
+	    System.out.println(query.toString()); 
+	    
+	    TermRangeQuery query1 = TermRangeQuery.newStringRange("range", "4", "9",
+				true, true);
+	    Filter filter=null;
+	    //1.域   2.起始位置  3.结束位置   4.是否包含起始位置    5.是否包含结束位置   
+       // filter =TermRangeFilter.newStringRange("range","4","9",true,true);
+        filter = new QueryWrapperFilter(query1);
         
       //使用NumericRangeFilter进行过滤
         //filter=NumericRangeFilter.newIntRange("size", 10, 5000, true, true);

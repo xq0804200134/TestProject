@@ -33,8 +33,7 @@ public class TestLucene {
 	
 	public static void testCache(){
 		//AtomicReader  reader = new 
-		
-		float [] weights = FieldCache.DEFAULT.getFloats(reader, "contents", false);
+		//float [] weights = FieldCache.DEFAULT.getFloats(reader, "contents", false);
 	}
 
 }

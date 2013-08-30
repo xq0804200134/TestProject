@@ -49,11 +49,11 @@ public class TxtFileIndexer {
                Field pathField = new StringField("path",dataFiles[i].getCanonicalPath(), Field.Store.YES);
                document.add(pathField);
                
-               FieldType type1 = new  FieldType();
-               type1.setIndexed(true);
-               type1.setStored(true);
-               type1.setIndexOptions(IndexOptions.DOCS_ONLY);
-               Field field1 = new Field("path","abc",type1);
+               //FieldType type1 = new  FieldType();
+              // type1.setIndexed(true);
+              // type1.setStored(true);
+              // type1.setIndexOptions(IndexOptions.DOCS_ONLY);
+              // Field field1 = new Field("path","abc",type1);
                
                
                Field rangeField = new StringField("range",i+"", Field.Store.YES);
@@ -75,7 +75,7 @@ public class TxtFileIndexer {
      } 
      
      /** 
-      * ¶ÁÈ¡ÎÄ¼þÄÚÈÝ 
+      * ï¿½ï¿½È¡ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ 
       * @param file 
       * @return 
       * @throws Exception  

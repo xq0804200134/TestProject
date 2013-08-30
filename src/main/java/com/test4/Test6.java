@@ -187,7 +187,7 @@ public class Test6 {
 			 httpPost.getParams().setParameter("site", "en");
 			 httpPost.getParams().setParameter("pageNo", "1");
 			 httpPost.getParams().setParameter("pageSize", "15");
-			 httpPost.getParams().setParameter("keyword","a");
+			 httpPost.getParams().setParameter("keyword","江浩");
 			 
 			 
 			 httpPost.addHeader(
